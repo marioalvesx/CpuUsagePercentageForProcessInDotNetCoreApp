@@ -16,7 +16,7 @@ namespace CpuUsagePercentageDotNetCoreExample
                 await Task.Delay(2000);
                 var cpuUsage = await GetCpuUsageForProcess();
 
-                Console.WriteLine(cpuUsage);
+                Console.WriteLine(cpuUsage + "%");
             }
         }
 
@@ -50,7 +50,9 @@ namespace CpuUsagePercentageDotNetCoreExample
 
             var cpuUsageTotal = cpuUsedMs / (Environment.ProcessorCount * totalMsPassed);
 
-            return cpuUsageTotal * 100;
+            var cpuUsageResult = cpuUsageTotal * 100;
+
+            return Math.Round(cpuUsageResult, 2);
         }
     }
 }
